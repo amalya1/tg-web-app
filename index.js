@@ -2,7 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const cors = require('cors');
 
-const token = '5336424335:AAGk0uyo0qqRCrKgvr2J7GrYKK1S0MF8878';
+const token = '6881534492:AAE8PXcLyuDYcVQlQL46fhSLViB_2SAX-0A';
 const webAppUrl = 'https://ornate-selkie-c27577.netlify.app';
 
 const bot = new TelegramBot(token, {polling: true});
@@ -45,12 +45,14 @@ bot.on('message', async (msg) => {
                 await bot.sendMessage(chatId, 'Всю информацию вы получите в этом чате');
             }, 3000)
         } catch (e) {
-            console.log(e);
+            // console.log(e);
         }
     }
 });
 
 app.post('/web-data', async (req, res) => {
+    console.log(req);
+
     const {queryId, products = [], totalPrice} = req.body;
     try {
         await bot.answerWebAppQuery(queryId, {
